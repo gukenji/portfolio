@@ -1,15 +1,17 @@
-import React, { useRef, useEffect, useState, forwardRef } from 'react'
+import React, { useState, forwardRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 
 const Sphere = forwardRef((props, ref) => {
   console.log(ref)
   const [hovered, setHover] = useState(false)
   const [rotate, setRotate] = useState(false)
-  useFrame((_, delta) => {
-    if (rotate) {
-      ref.current.rotation.x += 0.01 * delta
-      ref.current.rotation.y += 0.1 * delta
-    }
+
+  useFrame(({ pointer, viewport }) => {
+    const x = (pointer.x * viewport.width) / 2.5
+    const y = (-pointer.y * viewport.height) / 2.5
+    ref.current.lookAt(x, y, 2.5)
+    ref.current.rotation.x += 0.01
+    ref.current.rotation.y += 0.1
   })
 
   return (
