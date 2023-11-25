@@ -1,3 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background-color: hsl(0, 0%, 5%);
+  --pad: max(20px, 4vmin);
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +18,19 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  background: #000000;
+}
+
+.teste {
+  left: var(--pad);
+  top: var(--pad);
+  bottom: var(--pad);
+  right: var(--pad);
 }

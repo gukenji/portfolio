@@ -1,25 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
-
+import CanvasComponent from './components/SphereCanvas'
+import Frame from './components/Frame'
+import BoxCanvas from './components/BoxCanvas'
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="fixed left-0 top-0 w-full h-full bg-background-color overflow-hidden">
+      <Frame />
+      <BoxCanvas />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
