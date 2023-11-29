@@ -39,8 +39,8 @@
   "editor.accessibilitySupport": "off",
   "editor.bracketPairColorization.enabled": false,
   "emmet.excludeLanguages": ["markdown", "css"],
-  "workbench.editor.untitled.hint": "hidden",
   "editor.suggest.showInlineDetails": false,
   "terminal.integrated.fontSize": 16,
-  "window.zoomLevel": -1
+  "window.zoomLevel": 0,
+  "workbench.editor.empty.hint": "hidden"
 }

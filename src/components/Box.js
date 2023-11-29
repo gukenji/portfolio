@@ -1,7 +1,14 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useEffect } from 'react'
 import { useFrame } from '@react-three/fiber'
+import { useControls } from 'leva'
 
 const Box = forwardRef((props, ref) => {
+  const { meshWireframe } = useControls({
+    meshWireframe: {
+      value: false
+    }
+  })
+
   useFrame(({ pointer, viewport }) => {
     // const time_elapsed = state.clock.getElapsedTime()
     const x = (pointer.x * viewport.width) / 2.5
@@ -13,7 +20,7 @@ const Box = forwardRef((props, ref) => {
     //objeto
     <mesh {...props} ref={ref}>
       <boxGeometry />
-      <meshBasicMaterial color="white" wireframe />
+      <meshBasicMaterial color="white" wireframe={meshWireframe} />
     </mesh>
   )
 })

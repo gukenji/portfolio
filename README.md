@@ -7,6 +7,7 @@ O intuíto deste projeto é criar um portfólio pessoal meu utilizando apenas te
 1.  **React.JS**: framework principal;
 2.  **Three.JS**: criação da parte gráfica;
 3.  **TailwindCSS**: estilização da página;
+4.  **Leva**: debugger da área gráfica (GUI);
 
 ## Dificuldades encontradas
 
