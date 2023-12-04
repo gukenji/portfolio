@@ -6,12 +6,16 @@ import Sphere from './components/Sphere'
 import { useControls } from 'leva'
 import Tom from './components/Tom'
 import * as THREE from 'three'
+import Flag from './components/Flag'
+import Moon from './components/Moon'
+
 function App() {
-  const box1 = useRef()
-  const box2 = useRef()
-  const sphereRef = useRef()
+  // const box1 = useRef()
+  // const box2 = useRef()
+  // const sphereRef = useRef()
   const canvas = useRef()
   const tom = useRef()
+  const moon = useRef()
   const { box1X, box1Y, box1Z } = useControls({
     box1X: {
       value: -1,
@@ -37,7 +41,7 @@ function App() {
     <div className="fixed left-0 top-0 w-full h-full bg-background-color overflow-hidden">
       <Frame />
       <Canvas
-        camera={{ position: [0, 0, 2.5] }}
+        camera={{ position: [1, 1, 1] }}
         onCreated={({ gl }) => {
           gl.setClearColor('#808080', 0.5)
         }}
@@ -48,11 +52,13 @@ function App() {
         style={{ position: 'fixed', width: 'auto', height: 'auto' }}
         className="top-pad bottom-pad left-pad right-pad"
         ref={canvas}>
-        <ambientLight intensity={4.1} />
+        <ambientLight intensity={1} />
         <directionalLight position={[0, 0, 2.5]} />
-        <Suspense fallback={null}>
+        {/* <Suspense fallback={null}>
           <Tom ref={tom} />
-        </Suspense>
+        </Suspense> */}
+        {/* <Flag /> */}
+        <Moon ref={moon} />
       </Canvas>
     </div>
   )
