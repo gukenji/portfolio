@@ -7,7 +7,8 @@ module.exports = {
         'background-color': 'var(--background-color)'
       },
       inset: {
-        pad: 'var(--pad)'
+        pad: 'var(--pad)',
+        pad_canvas: 'var(--pad_canvas)'
       }
     }
   },

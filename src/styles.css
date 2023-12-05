@@ -5,6 +5,7 @@
 :root {
   --background-color: hsl(0, 0%, 5%);
   --pad: max(20px, 4vmin);
+  --pad_canvas: max(25px, 4.1vmin);
 }
 body {
   margin: 0;
