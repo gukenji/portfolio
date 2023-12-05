@@ -17,7 +17,7 @@ function App() {
       <Canvas
         camera={{ position: [3, 3, 2] }}
         onCreated={({ gl }) => {
-          // gl.setClearColor('#808080', 0.2)
+          gl.setClearColor('#000000', 1)
         }}
         gl={{
           physicallyCorrectLights: true,

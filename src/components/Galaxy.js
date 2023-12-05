@@ -29,9 +29,9 @@ const Galaxy = forwardRef((props, ref) => {
       const distanceToCenter = getDistanceToCenter(x, y, z)
       const normalizedDistanceToCenter = distanceToCenter / 100
       color.setRGB(
-        Math.cos(normalizedDistanceToCenter),
-        THREE.MathUtils.randFloat(0, 0.8),
-        Math.sin(normalizedDistanceToCenter)
+        Math.cos(normalizedDistanceToCenter) ** 3,
+        THREE.MathUtils.randFloat(0.5, 1),
+        Math.sin(normalizedDistanceToCenter) ** 2 + 1
       )
       color.toArray(colors, i)
     }
@@ -59,13 +59,13 @@ const Galaxy = forwardRef((props, ref) => {
           transparent
           depthWrite={false}
           vertexColors
-          opacity={0.1}
+          opacity={1}
           depthTest
           size={0.01}
         />
       </Points>
-      <Moon ref={moon} position={[1, 5, 0]} />
-      <Earth ref={earth} position={[2, -2, 0]} />
+      {/* <Moon ref={moon} position={[1, 5, 0]} />
+      <Earth ref={earth} position={[2, -2, 0]} /> */}
       <EffectComposer autoClear={false}>
         <SelectiveBloom
           intensity={0.2}
