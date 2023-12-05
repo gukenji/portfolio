@@ -1,4 +1,4 @@
-const fragmentShader = `
+const fragmentShader = /*glsl*/ `
 precision mediump float;
 
 void main() {

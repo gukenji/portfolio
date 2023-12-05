@@ -1,41 +1,15 @@
 import Frame from './components/Frame'
 import { Canvas, useLoader, useFrame } from '@react-three/fiber'
 import { useEffect, useRef, Suspense } from 'react'
-import Box from './components/Box'
-import Sphere from './components/Sphere'
-import { useControls } from 'leva'
-import Tom from './components/Tom'
-import * as THREE from 'three'
 import Flag from './components/Flag'
 import Moon from './components/Moon'
+import Earth from './components/Earth'
 
 function App() {
-  // const box1 = useRef()
-  // const box2 = useRef()
-  // const sphereRef = useRef()
   const canvas = useRef()
-  const tom = useRef()
   const moon = useRef()
-  const { box1X, box1Y, box1Z } = useControls({
-    box1X: {
-      value: -1,
-      min: 0,
-      max: 5,
-      step: 1
-    },
-    box1Y: {
-      value: 1,
-      min: 0,
-      max: 5,
-      step: 1
-    },
-    box1Z: {
-      value: 0,
-      min: 0,
-      max: 5,
-      step: 1
-    }
-  })
+  const earth = useRef()
+
   useEffect(() => {})
   return (
     <div className="fixed left-0 top-0 w-full h-full bg-background-color overflow-hidden">
@@ -53,12 +27,13 @@ function App() {
         className="top-pad bottom-pad left-pad right-pad"
         ref={canvas}>
         <ambientLight intensity={1} />
-        <directionalLight position={[0, 0, 2.5]} />
-        {/* <Suspense fallback={null}>
-          <Tom ref={tom} />
-        </Suspense> */}
-        {/* <Flag /> */}
-        <Moon ref={moon} />
+        <directionalLight position={[0, 0, 4]} />
+        <Suspense fallback={null}>
+          <Earth ref={earth} position={[2, 2, 0]} />
+        </Suspense>
+        <Suspense fallback={null}>
+          <Moon ref={earth} position={[0, 0, 0]} />
+        </Suspense>
       </Canvas>
     </div>
   )

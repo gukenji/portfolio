@@ -1,11 +1,11 @@
 import React, { forwardRef, useEffect, useRef } from 'react'
-import moonObjGLB from '../static/moon.glb'
+import moonObjGLB from '../static/earth.glb'
 import { Clone, OrbitControls, useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
-const Moon = forwardRef((props, ref) => {
-  const moon = useGLTF(moonObjGLB)
+const Earth = forwardRef((props, ref) => {
+  const earth = useGLTF(moonObjGLB)
   const geometry = useRef()
-  const { scene, nodes, materials, animations } = moon
+  const { scene, nodes, materials, animations } = earth
   useEffect(() => {})
   return (
     <>
@@ -19,4 +19,4 @@ const Moon = forwardRef((props, ref) => {
   )
 })
 
-export default Moon
+export default Earth
