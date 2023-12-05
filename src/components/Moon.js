@@ -6,11 +6,14 @@ const Moon = forwardRef((props, ref) => {
   const moon = useGLTF(moonObjGLB)
   const geometry = useRef()
   const { scene, nodes, materials, animations } = moon
-  useEffect(() => {})
+  useEffect(() => {
+    // console.log('lua')
+    // console.log(scene)
+  })
+
   return (
     <>
-      <OrbitControls enableDamping={true} />
-      <mesh {...props} ref={ref} scale={0.5}>
+      <mesh {...props} ref={ref} scale={0.2}>
         {/* <sphereGeometry ref={geometry} />
         <meshStandardMaterial /> */}
         <Clone object={scene} />
