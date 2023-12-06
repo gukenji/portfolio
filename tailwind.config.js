@@ -3,7 +3,8 @@ module.exports = {
   content: ['./src/**/*.{html,js}'],
   theme: {
     fontFamily: {
-      h1: ['Cormorant Garamond']
+      h1: ['Cormorant Garamond'],
+      area: ['Quicksand']
     },
     extend: {
       colors: {

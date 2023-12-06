@@ -26,7 +26,7 @@ function App() {
           antialias: true
         }}
         style={{ position: 'fixed', width: 'auto', height: 'auto' }}
-        className="top-pad_canvas bottom-pad_canvas left-pad_canvas right-pad_canvas z-10 opacity-20 fixed"
+        className="top-pad_canvas bottom-pad_canvas left-pad_canvas right-pad_canvas z-0 opacity-50 fixed"
         ref={canvas}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[0, 0, 4]} />
