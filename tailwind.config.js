@@ -2,6 +2,9 @@
 module.exports = {
   content: ['./src/**/*.{html,js}'],
   theme: {
+    fontFamily: {
+      h1: ['Cormorant Garamond']
+    },
     extend: {
       colors: {
         'background-color': 'var(--background-color)'

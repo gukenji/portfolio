@@ -5,6 +5,7 @@ import Flag from './components/Flag'
 import Moon from './components/Moon'
 import Earth from './components/Earth'
 import Galaxy from './components/Galaxy'
+import Header from './components/Header'
 function App() {
   const canvas = useRef()
   const moon = useRef()
@@ -13,9 +14,10 @@ function App() {
   useEffect(() => {})
   return (
     <div className="fixed left-0 top-0 w-full h-full bg-background-color overflow-hidden">
+      <Header />
       <Frame />
       <Canvas
-        camera={{ position: [3, 3, 2] }}
+        camera={{ position: [10, 6, 4] }}
         onCreated={({ gl }) => {
           gl.setClearColor('#000000', 1)
         }}
@@ -24,7 +26,7 @@ function App() {
           antialias: true
         }}
         style={{ position: 'fixed', width: 'auto', height: 'auto' }}
-        className="top-pad_canvas bottom-pad_canvas left-pad_canvas right-pad_canvas fixed"
+        className="top-pad_canvas bottom-pad_canvas left-pad_canvas right-pad_canvas z-10 opacity-20 fixed"
         ref={canvas}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[0, 0, 4]} />
