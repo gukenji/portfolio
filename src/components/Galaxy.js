@@ -1,18 +1,13 @@
 import React, { forwardRef, useEffect, useRef, useMemo } from 'react'
 import * as THREE from 'three'
-import { Points, useGLTF, Clone, OrbitControls } from '@react-three/drei'
-import { GLTF } from 'three-stdlib'
+import { Points, useGLTF, OrbitControls } from '@react-three/drei'
 import { useFrame, useLoader } from '@react-three/fiber'
 import { EffectComposer, SelectiveBloom } from '@react-three/postprocessing'
 import galaxy from '../static/galaxy.glb'
-import Earth from './Earth'
-import Moon from './Moon'
 const Galaxy = forwardRef((props, ref) => {
   const galaxyRef = useRef()
   const galaxyCenterLightRef = useRef()
-  const moon = useRef()
-  const earth = useRef()
-  const { nodes, scene } = useGLTF(galaxy)
+  const { nodes } = useGLTF(galaxy)
   const [positions, colors] = useMemo(() => {
     nodes.Object_2.geometry.center()
     const positions = new Float32Array(
@@ -64,8 +59,6 @@ const Galaxy = forwardRef((props, ref) => {
           size={0.01}
         />
       </Points>
-      {/* <Moon ref={moon} position={[1, 5, 0]} />
-      <Earth ref={earth} position={[2, -2, 0]} /> */}
       <EffectComposer autoClear={false}>
         <SelectiveBloom
           intensity={0.2}

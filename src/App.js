@@ -1,15 +1,17 @@
 import Frame from './components/Frame'
-import { Canvas, useLoader, useFrame } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber'
 import { useEffect, useRef, Suspense } from 'react'
-import Flag from './components/Flag'
-import Moon from './components/Moon'
-import Earth from './components/Earth'
+import { useSelector } from 'react-redux'
 import Galaxy from './components/Galaxy'
 import Header from './components/Header'
+import { current } from '@reduxjs/toolkit'
+import Home from './components/Home'
+import Projects from './components/Projects'
+import Contacts from './components/Contacts'
+
 function App() {
+  const currentPage = useSelector((state) => state.page.value)
   const canvas = useRef()
-  const moon = useRef()
-  const earth = useRef()
   const galaxy = useRef()
   useEffect(() => {})
   return (
@@ -34,6 +36,9 @@ function App() {
           <Galaxy ref={galaxy} position={[0, 0, 0]} />
         </Suspense>
       </Canvas>
+      {currentPage == 'home' ? <Home /> : <></>}
+      {currentPage == 'projetos' ? <Projects /> : <></>}
+      {currentPage == 'contatos' ? <Contacts /> : <></>}
     </div>
   )
 }
