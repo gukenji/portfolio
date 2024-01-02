@@ -3,10 +3,13 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+
 :root {
   --background-color: hsl(0, 0%, 5%);
   --pad: max(20px, 4vmin);
   --pad_canvas: max(25px, 4.1vmin);
+  --pad_form: max(100px, 4.4vmin);
+  --pad_form_md: max(1000px, 5vmin);
 }
 body {
   margin: 0;

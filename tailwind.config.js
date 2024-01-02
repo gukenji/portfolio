@@ -12,7 +12,9 @@ module.exports = {
       },
       inset: {
         pad: 'var(--pad)',
-        pad_canvas: 'var(--pad_canvas)'
+        pad_canvas: 'var(--pad_canvas)',
+        pad_form: 'var(--pad_form)',
+        pad_form_md: 'var(--pad_form_md)'
       }
     }
   },

@@ -8,6 +8,10 @@ import { current } from '@reduxjs/toolkit'
 import Home from './components/Home'
 import Projects from './components/Projects'
 import Contacts from './components/Contacts'
+import '@fontsource/roboto/300.css'
+import '@fontsource/roboto/400.css'
+import '@fontsource/roboto/500.css'
+import '@fontsource/roboto/700.css'
 
 function App() {
   const currentPage = useSelector((state) => state.page.value)
@@ -36,7 +40,7 @@ function App() {
           <Galaxy ref={galaxy} position={[0, 0, 0]} />
         </Suspense>
       </Canvas>
-      {currentPage == 'home' ? <Home /> : <></>}
+      {currentPage == 'home' || currentPage == null ? <Home /> : <></>}
       {currentPage == 'projetos' ? <Projects /> : <></>}
       {currentPage == 'contatos' ? <Contacts /> : <></>}
     </div>
