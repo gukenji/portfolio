@@ -18,10 +18,10 @@ const Header = () => {
           <li
             className="cursor-pointer hover:text-[#bfbfbf]"
             onClick={() => dispatch(changePage('home'))}>
-            {(currentPage != 'home') & (currentPage != null) ? (
+            {(currentPage !== 'home') & (currentPage !== null) ? (
               'Home'
             ) : (
-              <span class="material-symbols-outlined text-xs">
+              <span className="material-symbols-outlined text-xs">
                 arrow_forward_ios
               </span>
             )}
@@ -29,10 +29,10 @@ const Header = () => {
           <li
             className="cursor-pointer hover:text-[#bfbfbf]"
             onClick={() => dispatch(changePage('projetos'))}>
-            {currentPage != 'projetos' ? (
+            {currentPage !== 'projetos' ? (
               'Projetos'
             ) : (
-              <span class="material-symbols-outlined text-xs">
+              <span className="material-symbols-outlined text-xs">
                 arrow_forward_ios
               </span>
             )}
@@ -40,10 +40,10 @@ const Header = () => {
           <li
             className="cursor-pointer hover:text-[#bfbfbf]"
             onClick={() => dispatch(changePage('contatos'))}>
-            {currentPage != 'contatos' ? (
+            {currentPage !== 'contatos' ? (
               'Contatos'
             ) : (
-              <span class="material-symbols-outlined text-xs">
+              <span className="material-symbols-outlined text-xs">
                 arrow_forward_ios
               </span>
             )}

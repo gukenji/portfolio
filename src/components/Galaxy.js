@@ -32,9 +32,6 @@ const Galaxy = forwardRef((props, ref) => {
     }
     return [positions, colors]
   }, [nodes])
-  useEffect(() => {
-    console.log(ref.current.rotation.z)
-  })
   useFrame(({ clock }) => {
     ref.current.rotation.z = clock.getElapsedTime() / 5
     ref.current.scale.setScalar(Math.sin(clock.getElapsedTime() / 2) + 1.5)

@@ -41,6 +41,6 @@
   "emmet.excludeLanguages": ["markdown", "css"],
   "editor.suggest.showInlineDetails": false,
   "terminal.integrated.fontSize": 16,
-  "window.zoomLevel": 0,
+  "window.zoomLevel": 1,
   "workbench.editor.empty.hint": "hidden"
 }
