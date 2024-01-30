@@ -32,10 +32,3 @@ body,
   margin: 0;
   background: #000000;
 }
-
-.teste {
-  left: var(--pad);
-  top: var(--pad);
-  bottom: var(--pad);
-  right: var(--pad);
-}

@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{html,js}'],
+  corePlugins: {
+    preflight: false
+  },
+  content: ['./src/**/*.{html,js,jsx,ts,tsx}'],
+  importat: '#root',
   theme: {
     fontFamily: {
       h1: ['Cormorant Garamond'],

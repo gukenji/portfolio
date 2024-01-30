@@ -14,7 +14,7 @@ const Header = () => {
         <p className="font-h1 md:text-lg">Desenvolvedor & Engenheiro</p>
       </div>
       <div className="flex">
-        <ul className="pt-12 flex flex-col gap-2 font-area text-xs">
+        <ul className="pt-12 pl-0 list-none flex flex-col gap-2 font-area text-xs">
           <li
             className="cursor-pointer hover:text-[#bfbfbf]"
             onClick={() => dispatch(changePage('home'))}>
