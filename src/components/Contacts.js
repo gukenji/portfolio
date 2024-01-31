@@ -6,12 +6,45 @@ import Box from '@mui/material/Box'
 import { isMobile } from 'react-device-detect'
 const Contacts = () => {
   const form = useRef()
-  const cursor = useRef()
-  console.log(cursor)
-  var cursorStatus = true
+  const cursorName = useRef()
+  const cursorEmail = useRef()
+  const cursorMessage = useRef()
   const w = window.innerWidth
   const [clicked, setClicked] = useState(false)
   const system = window.navigator.userAgentData.platform
+  var cursorNameStatus = true
+  var cursorEmailStatus = false
+  var cursorMessageStatus = false
+  const nameTextArea = useRef()
+  const emailTextArea = useRef()
+  const messageTextArea = useRef()
+  const nameCursorPos = nameTextArea.current?.selectionStart
+  const emailCursorPos = emailTextArea.current?.selectionStart
+  const messageCursorPos = messageTextArea.current?.selectionStart
+  const nameTextBeforeCursor = nameTextArea.current?.value.substring(
+    0,
+    nameCursorPos
+  )
+  const nameTextAfterCursor =
+    nameTextArea.current?.value.substring(nameCursorPos)
+  const emailTextBeforeCursor = emailTextArea.current?.value.substring(
+    0,
+    emailCursorPos
+  )
+  const emailTextAfterCursor =
+    emailTextArea.current?.value.substring(emailCursorPos)
+  const messageTextBeforeCursor = messageTextArea.current?.value.substring(
+    0,
+    messageCursorPos
+  )
+  const messageTextAfterCursor =
+    messageTextArea.current?.value.substring(messageCursorPos)
+
+  console.log(nameTextBeforeCursor)
+  console.log(emailTextBeforeCursor)
+
+  console.log(messageTextBeforeCursor)
+
   const sendEmail = (e) => {
     e.preventDefault()
     emailjs
@@ -31,18 +64,22 @@ const Contacts = () => {
       )
   }
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (cursorStatus) {
-        cursor.current.style.opacity = 0
-        cursorStatus = false
-      } else {
-        cursor.current.style.opacity = 1
-        cursorStatus = true
-      }
-    }, 300)
-    return () => clearInterval(interval)
-  }, [])
+  const handleChange = (e) => {
+    console.log(e)
+  }
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     if (cursorStatus) {
+  //       cursor.current.style.opacity = 0
+  //       cursorStatus = false
+  //     } else {
+  //       cursor.current.style.opacity = 1
+  //       cursorStatus = true
+  //     }
+  //   }, 300)
+  //   return () => clearInterval(interval)
+  // }, [])
   return (
     <Box className="relative z-10 top-[40%] md:left-[25%] md:w-1/2 w-auto">
       <p
@@ -68,23 +105,38 @@ const Contacts = () => {
         className={`bg-[#2e3436] flex text-white flex-col m-7 gap-2 rounded-bl-lg rounded-br-lg p-4 mt-0`}
         noValidate
         autoComplete="off">
-        <label className="flex items-center">
+        <label className="flex text-lg items-center">
           nome=
-          <span className="text-3xl" ref={cursor}>
+          <span className="text-3xl" ref={cursorName}>
             ∎
           </span>
           <input
+            autoFocus
             name={'user_name'}
-            className="flex-1 bg-[#2e3436] border-none text-white"></input>
+            ref={nameTextArea}
+            onChange={handleChange}
+            className="flex-1 bg-[#2e3436] border-none text-lg text-white"></input>
         </label>
-        <label className="flex items-center">
+        <label className="flex text-lg items-center">
           email=
-          <span className="text-3xl" ref={cursor}>
+          <span className="text-3xl" ref={cursorEmail}>
             ∎
           </span>
           <input
             name={'user_email'}
-            className="flex-1 bg-[#2e3436] border-none text-white"></input>
+            ref={emailTextArea}
+            className="flex-1 bg-[#2e3436] border-none text-lg text-white"></input>
+        </label>
+        <label className="flex text-lg items-center">
+          mensagem=
+          <span className="text-3xl" ref={cursorEmail}>
+            ∎
+          </span>
+          <textarea
+            name={'message'}
+            ref={messageTextArea}
+            rows={3}
+            className="flex-1 bg-[#2e3436] border-none text-lg text-white"></textarea>
         </label>
         {/* <TextField
           id="outlined-number"
@@ -108,8 +160,8 @@ const Contacts = () => {
             shrink: true,
             class: 'text-white'
           }}
-        />
-        <TextField
+        /> */}
+        {/* <TextField
           id="standard-basic"
           label="Mensagem"
           className="md:w-full"
