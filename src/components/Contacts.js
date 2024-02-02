@@ -40,7 +40,16 @@ const Contacts = () => {
     const cursorPos = area.current?.selectionStart
     const textBeforeCursor = area.current?.value.substring(0, cursorPos)
     const textAfterCursor = area.current?.value.substring(cursorPos)
-    const careEle = <span className="cursor">&nbsp;</span>
+    // mirror = (
+    //   <div className="absolute top-0 left-0 h-full w-full overflow-hidden text-transparent">
+    //     {textBeforeCursor}
+    //     <span className="cursor">&nbsp;</span>
+    //     {textAfterCursor}
+    //   </div>
+    // )
+    // console.log(mirror)
+    mirror.current.classList.add(`w-[${area.current.clientWidth}px]`)
+    mirror.current.classList.add(`h-[${area.current.clientHeight}px]`)
   }
 
   // useEffect(() => {
@@ -66,34 +75,38 @@ const Contacts = () => {
         autoComplete="off">
         <label className="flex text-lg items-center relative">
           nome =
-          <div className="absolute top-0 left-0 h-full w-full overflow-hidden text-transparent" ref={nameMirror}></div>
+          <div className="absolute z-0 top-0 left-0 h-full w-full overflow-hidden text-transparent" ref={nameMirror}>
+            aeaaaaeae
+          </div>
           <input
             autoFocus
             name={'user_name'}
             ref={nameTextArea}
             onClick={() => handleSelectionChange(nameTextArea, nameMirror)}
-            className="flex-1 bg-[#2e3436] border-none text-lg text-white"></input>
+            className="flex-1 bg-[#2e3436] border-none text-lg text-white relative z-1"></input>
         </label>
         <label className="flex text-lg items-center relative">
-          email =
-          <div className="absolute top-0 left-0 h-full w-full overflow-hidden text-transparent" ref={emailMirror}></div>
+          email ={' '}
+          <div className="absolute z-0 top-0 left-0 h-full w-full overflow-hidden text-transparent" ref={emailMirror}>
+            aeaaaaeae
+          </div>
           <input
             name={'user_email'}
             ref={emailTextArea}
             onClick={() => handleSelectionChange(emailTextArea, emailMirror)}
-            className="flex-1 bg-[#2e3436] border-none text-lg text-white"></input>
+            className="flex-1 bg-[#2e3436] border-none text-lg text-white relative z-1"></input>
         </label>
         <label className="flex text-lg items-center relative">
           mensagem ={' '}
           <div
-            className="absolute top-0 left-0 h-full w-full overflow-hidden text-transparent"
+            className="absolute z-0 top-0 left-0 h-full w-full overflow-hidden text-transparent"
             ref={messageMirror}></div>
           <textarea
             name={'message'}
             onClick={() => handleSelectionChange(messageTextArea, messageMirror)}
             ref={messageTextArea}
             rows={3}
-            className="flex-1 bg-[#2e3436] border-none text-lg text-white"></textarea>
+            className="flex-1 relative z-1 bg-[#2e3436] border-none text-lg text-white"></textarea>
         </label>
         {/* <TextField
           id="outlined-number"
