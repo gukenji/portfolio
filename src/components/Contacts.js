@@ -42,7 +42,7 @@ const Contacts = () => {
     const textBeforeCursor = area.current?.value.substring(0, cursorPos)
     const textAfterCursor = area.current?.value.substring(cursorPos)
     console.log(cursorPos)
-    area.current.previousSibling.innerHTML = `${textBeforeCursor}<span style="width: 4px;  position:absolute;animation: blink 1s infinite;">&nbsp;</span>${textAfterCursor}`
+    area.current.previousSibling.innerHTML = `${textBeforeCursor}<span style="width: 10px;  position:absolute;animation: blink 1s infinite;">&nbsp;</span>${textAfterCursor}`
   }
 
   useEffect(() => {
@@ -111,37 +111,6 @@ const Contacts = () => {
             rows={3}
             className="flex-1 relative z-1 caret-transparent bg-transparent border-none text-white  text-sm md:text-base font-area b-0 focus:outline-none"></textarea>
         </label>
-        {/* <TextField
-          id="outlined-number"
-          label="Nome"
-          name={'user_name'}
-          className="md:w-full bg-white"
-          InputLabelProps={{
-            shrink: true
-          }}
-          InputProps={{
-            class: 'bg-white'
-          }}
-        />
-        <TextField
-          id="outlined-number"
-          label="E-mail"
-          className="md:w-full m1"
-          name={'user_email'}
-          type={'email'}
-          InputLabelProps={{
-            shrink: true,
-            class: 'text-white'
-          }}
-        /> */}
-        {/* <TextField
-          id="standard-basic"
-          label="Mensagem"
-          className="md:w-full"
-          variant="standard"
-          multiline
-          rows={4}
-          name={'message'}></TextField> */}
         <Button type="submit" variant="contained" color="primary" className="md:w-1/2 md:self-center">
           Enviar
         </Button>
