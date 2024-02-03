@@ -6,23 +6,14 @@ import Box from '@mui/material/Box'
 import { isMobile } from 'react-device-detect'
 const Contacts = () => {
   const form = useRef()
-  const cursorName = useRef()
-  const cursorEmail = useRef()
-  const cursorMessage = useRef()
   const emailMirror = useRef()
   const messageMirror = useRef()
   const nameMirror = useRef()
-  const caret = useRef()
   const w = window.innerWidth
   const system = window.navigator.userAgentData.platform
 
-  var cursorNameStatus = true
   const nameTextArea = useRef()
-
-  var cursorEmailStatus = false
   const emailTextArea = useRef()
-
-  var cursorMessageStatus = false
   const messageTextArea = useRef()
 
   const sendEmail = (e) => {
@@ -41,7 +32,6 @@ const Contacts = () => {
     const cursorPos = area.current?.selectionStart
     const textBeforeCursor = area.current?.value.substring(0, cursorPos)
     const textAfterCursor = area.current?.value.substring(cursorPos)
-    console.log(cursorPos)
     area.current.previousSibling.innerHTML = `${textBeforeCursor}<span style="width: 10px;  position:absolute;animation: blink 1s infinite;">&nbsp;</span>${textAfterCursor}`
   }
 
@@ -55,6 +45,16 @@ const Contacts = () => {
     const messageWidth = messageTextArea.current?.getBoundingClientRect().width - 4
     messageMirror.current.style.width = `${messageWidth}px`
     handleSelectionChange(nameTextArea, nameMirror)
+
+    document.addEventListener('selectionchange', (e) => {
+      if (e.target.activeElement == nameTextArea.current) {
+        handleSelectionChange(nameTextArea, nameMirror)
+      } else if (e.target.activeElement == messageTextArea.current) {
+        handleSelectionChange(messageTextArea, messageMirror)
+      } else if (e.target.activeElement == emailTextArea.current) {
+        handleSelectionChange(emailTextArea, emailMirror)
+      }
+    })
   }, [])
 
   return (
@@ -83,8 +83,6 @@ const Contacts = () => {
             autoFocus
             name={'user_name'}
             ref={nameTextArea}
-            onClick={() => handleSelectionChange(nameTextArea, nameMirror)}
-            onChange={() => handleSelectionChange(messageTextArea, messageMirror)}
             className="flex-1 relative z-1 caret-transparent bg-transparent border-none text-white  text-sm md:text-base font-area b-0 focus:outline-none"></input>
         </label>
         <label className="flex items-center relative text-sm md:text-base">
@@ -95,7 +93,6 @@ const Contacts = () => {
           <input
             name={'user_email'}
             ref={emailTextArea}
-            onClick={() => handleSelectionChange(emailTextArea, emailMirror)}
             className="flex-1 relative z-1 caret-transparent bg-transparent border-none text-white  text-sm md:text-base font-area b-0 focus:outline-none"></input>
         </label>
         <label className="flex items-center relative text-sm md:text-base">
@@ -105,8 +102,6 @@ const Contacts = () => {
             ref={messageMirror}></div>
           <textarea
             name={'message'}
-            onClick={() => handleSelectionChange(messageTextArea, messageMirror)}
-            onKeyUp={() => handleSelectionChange(messageTextArea, messageMirror)}
             ref={messageTextArea}
             rows={3}
             className="flex-1 relative z-1 caret-transparent bg-transparent border-none text-white  text-sm md:text-base font-area b-0 focus:outline-none"></textarea>
