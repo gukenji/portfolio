@@ -9,6 +9,9 @@ const Contacts = () => {
   const emailMirror = useRef()
   const messageMirror = useRef()
   const nameMirror = useRef()
+  const [nameState, setNameState] = useState(true)
+  const [emailState, setEmailState] = useState(false)
+  const [messageState, setMessageState] = useState(false)
   const w = window.innerWidth
   const system = window.navigator.userAgentData.platform
 
@@ -35,7 +38,7 @@ const Contacts = () => {
       const area_length = area.current.value.length
       const last_char = area.current.value[area_length - 1]
       last_char == ' '
-        ? (area.current.value = area.current.value.substring(0, area_length - 2))
+        ? (area.current.value = area.current.value.substring(0, area_length - 1))
         : (area.current.value = area.current.value)
     } else if (key == 32) {
       cursorPos = area.current?.selectionStart + 1
@@ -46,6 +49,10 @@ const Contacts = () => {
     const textBeforeCursor = area.current?.value.substring(0, cursorPos)
     const textAfterCursor = area.current?.value.substring(cursorPos)
     area.current.previousSibling.innerHTML = `${textBeforeCursor}<span style="width: 10px;  position:absolute;animation: blink 1s infinite;">&nbsp;</span>${textAfterCursor}`
+  }
+
+  const removeCaretVisibility = (mirror) => {
+    mirror.current.removeChild(mirror.current.children[0])
   }
 
   const handleKey = (e) => {
@@ -107,6 +114,7 @@ const Contacts = () => {
             name={'user_name'}
             ref={nameTextArea}
             onKeyDown={handleKey}
+            onBlur={() => removeCaretVisibility(nameMirror)}
             className="flex-1 relative z-1 caret-transparent bg-transparent border-none text-white  text-sm md:text-base font-area b-0 focus:outline-none"></input>
         </label>
         <label className="flex items-center relative text-sm md:text-base">
@@ -117,6 +125,8 @@ const Contacts = () => {
           <input
             name={'user_email'}
             ref={emailTextArea}
+            onKeyDown={handleKey}
+            onBlur={() => removeCaretVisibility(emailMirror)}
             className="flex-1 relative z-1 caret-transparent bg-transparent border-none text-white  text-sm md:text-base font-area b-0 focus:outline-none"></input>
         </label>
         <label className="flex items-center relative text-sm md:text-base">
@@ -128,6 +138,8 @@ const Contacts = () => {
             name={'message'}
             ref={messageTextArea}
             rows={3}
+            onKeyDown={handleKey}
+            onBlur={() => removeCaretVisibility(messageMirror)}
             className="flex-1 relative z-1 caret-transparent bg-transparent border-none text-white  text-sm md:text-base font-area b-0 focus:outline-none"></textarea>
         </label>
         <Button type="submit" variant="contained" color="primary" className="md:w-1/2 md:self-center">
