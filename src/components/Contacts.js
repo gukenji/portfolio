@@ -28,11 +28,34 @@ const Contacts = () => {
     )
   }
 
-  const handleSelectionChange = (area, mirror) => {
-    const cursorPos = area.current?.selectionStart
+  const handleSelectionChange = (area, key) => {
+    var cursorPos
+    if (key == 8) {
+      cursorPos = area.current?.selectionStart - 1
+      const area_length = area.current.value.length
+      const last_char = area.current.value[area_length - 1]
+      last_char == ' '
+        ? (area.current.value = area.current.value.substring(0, area_length - 2))
+        : (area.current.value = area.current.value)
+    } else if (key == 32) {
+      cursorPos = area.current?.selectionStart + 1
+      area.current.value += '\xa0'
+    } else {
+      cursorPos = area.current?.selectionStart
+    }
     const textBeforeCursor = area.current?.value.substring(0, cursorPos)
     const textAfterCursor = area.current?.value.substring(cursorPos)
     area.current.previousSibling.innerHTML = `${textBeforeCursor}<span style="width: 10px;  position:absolute;animation: blink 1s infinite;">&nbsp;</span>${textAfterCursor}`
+  }
+
+  const handleKey = (e) => {
+    if (e.target == nameTextArea.current) {
+      handleSelectionChange(nameTextArea, e.keyCode)
+    } else if (e.target == messageTextArea.current) {
+      handleSelectionChange(messageTextArea, e.keyCode)
+    } else if (e.target == emailTextArea.current) {
+      handleSelectionChange(emailTextArea, e.keyCode)
+    }
   }
 
   useEffect(() => {
@@ -44,15 +67,15 @@ const Contacts = () => {
 
     const messageWidth = messageTextArea.current?.getBoundingClientRect().width - 4
     messageMirror.current.style.width = `${messageWidth}px`
-    handleSelectionChange(nameTextArea, nameMirror)
+    handleSelectionChange(nameTextArea, null)
 
     document.addEventListener('selectionchange', (e) => {
       if (e.target.activeElement == nameTextArea.current) {
-        handleSelectionChange(nameTextArea, nameMirror)
+        handleSelectionChange(nameTextArea, null)
       } else if (e.target.activeElement == messageTextArea.current) {
-        handleSelectionChange(messageTextArea, messageMirror)
+        handleSelectionChange(messageTextArea, null)
       } else if (e.target.activeElement == emailTextArea.current) {
-        handleSelectionChange(emailTextArea, emailMirror)
+        handleSelectionChange(emailTextArea, null)
       }
     })
   }, [])
@@ -83,6 +106,7 @@ const Contacts = () => {
             autoFocus
             name={'user_name'}
             ref={nameTextArea}
+            onKeyDown={handleKey}
             className="flex-1 relative z-1 caret-transparent bg-transparent border-none text-white  text-sm md:text-base font-area b-0 focus:outline-none"></input>
         </label>
         <label className="flex items-center relative text-sm md:text-base">
