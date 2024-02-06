@@ -35,24 +35,26 @@ const Contacts = () => {
     var cursorPos
     if (key == 8) {
       cursorPos = area.current?.selectionStart - 1
-      const area_length = area.current.value.length
-      const last_char = area.current.value[area_length - 1]
-      last_char == ' '
-        ? (area.current.value = area.current.value.substring(0, area_length - 1))
-        : (area.current.value = area.current.value)
     } else if (key == 32) {
       cursorPos = area.current?.selectionStart + 1
-      area.current.value += '\xa0'
     } else {
       cursorPos = area.current?.selectionStart
     }
-    const textBeforeCursor = area.current?.value.substring(0, cursorPos)
-    const textAfterCursor = area.current?.value.substring(cursorPos)
+    const text = area.current?.value
+    var new_text = ''
+    for (var i = 0; i < text.length; i++) {
+      text[i] == ' ' ? (new_text += '\xa0') : (new_text += text[i])
+    }
+    var textBeforeCursor = new_text.substring(0, cursorPos)
+    var textAfterCursor = new_text.substring(cursorPos)
+    console.log(`text before: ${textBeforeCursor}`)
+    console.log(`text after: ${textAfterCursor}`)
+    console.log(`cursor pos: ${cursorPos}`)
     area.current.previousSibling.innerHTML = `${textBeforeCursor}<span style="width: 10px;  position:absolute;animation: blink 1s infinite;">&nbsp;</span>${textAfterCursor}`
   }
 
   const removeCaretVisibility = (mirror) => {
-    mirror.current.removeChild(mirror.current.children[0])
+    if (mirror.current.children[0]) mirror.current.removeChild(mirror.current.children[0])
   }
 
   const handleKey = (e) => {
