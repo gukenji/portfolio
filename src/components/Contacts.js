@@ -50,7 +50,7 @@ const Contacts = () => {
     console.log(`text before: ${textBeforeCursor}`)
     console.log(`text after: ${textAfterCursor}`)
     console.log(`cursor pos: ${cursorPos}`)
-    area.current.previousSibling.innerHTML = `${textBeforeCursor}<span style="width: 10px;  position:absolute;animation: blink 1s infinite;">&nbsp;</span>${textAfterCursor}`
+    area.current.previousSibling.innerHTML = `<span style="word-break:break-all;">${textBeforeCursor}<span style="width: 10px;  position:absolute;animation: blink 1s infinite;">&nbsp;</span>${textAfterCursor}</span>`
   }
 
   const removeCaretVisibility = (mirror) => {
@@ -141,7 +141,7 @@ const Contacts = () => {
             ref={messageTextArea}
             rows={3}
             onKeyDown={handleKey}
-            onBlur={() => removeCaretVisibility(messageMirror)}
+            // onBlur={() => removeCaretVisibility(messageMirror)}
             className="flex-1 relative z-1 caret-transparent bg-transparent border-none text-white  text-sm md:text-base font-area b-0 focus:outline-none"></textarea>
         </label>
         <Button type="submit" variant="contained" color="primary" className="md:w-1/2 md:self-center">
