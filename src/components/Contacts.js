@@ -4,12 +4,15 @@ import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import { isMobile } from 'react-device-detect'
+import ClipLoader from 'react-spinners/ClipLoader'
+
 const Contacts = () => {
   const form = useRef()
   const emailMirror = useRef()
   const messageMirror = useRef()
   const nameMirror = useRef()
   const submitResult = useRef()
+
   const w = window.innerWidth
   const system = window.navigator.userAgentData.platform
 
@@ -24,16 +27,22 @@ const Contacts = () => {
   const [nameValidationWarn, setNameValidationWarn] = useState(null)
   const [emailValidationWarn, setEmailValidationWarn] = useState(null)
   const [messageValidationWarn, setMessageValidationWarn] = useState(null)
-
+  const [loadingSubmit, setLoadingSubmit] = useState(false)
+  const [existError, setExistError] = useState(true)
   const sendEmail = (e) => {
     e.preventDefault()
+    setLoadingSubmit(true)
+    console.log(loadingSubmit)
     emailjs.sendForm('service_ozj7ubn', 'template_ye4n9jk', form.current, 'jLdOxN9R4ESMRHdhC').then(
       (result) => {
         console.log(result.text)
         setSubmitText('E-mail enviado com sucesso!')
+        clearInputs()
+        setLoadingSubmit(false)
       },
       (error) => {
         console.log(error.text)
+        setLoadingSubmit(false)
       }
     )
   }
@@ -62,6 +71,12 @@ const Contacts = () => {
     if (mirror.current.children[0]) mirror.current.removeChild(mirror.current.children[0])
   }
 
+  const clearInputs = () => {
+    nameTextArea.current.value = ''
+    emailTextArea.current.value = ''
+    messageTextArea.current.value = ''
+  }
+
   const validateTextLength = (text, length) => {
     var new_text = text.trimStart()
     return new_text.length > length
@@ -74,8 +89,18 @@ const Contacts = () => {
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       )
   }
+  const checkIfErrors = () => {
+    if (
+      validateEmail(emailTextArea.current?.value) == null ||
+      !validateTextLength(nameTextArea.current?.value, 0) ||
+      !validateTextLength(messageTextArea.current?.value, 0)
+    )
+      return setExistError(true)
+    return setExistError(false)
+  }
 
   const handleKey = (e) => {
+    checkIfErrors()
     if (e.target == nameTextArea.current) {
       handleSelectionChange(nameTextArea, e.keyCode)
     } else if (e.target == messageTextArea.current) {
@@ -104,6 +129,7 @@ const Contacts = () => {
       } else if (e.target.activeElement == emailTextArea.current) {
         handleSelectionChange(emailTextArea, null)
       }
+      checkIfErrors()
     })
   }, [])
 
@@ -124,7 +150,7 @@ const Contacts = () => {
         className={`bg-[#2e3436] text-sm md:text-base flex text-white flex-col m-7 gap-6 rounded-bl-lg rounded-br-lg p-4 mt-0`}
         noValidate
         autoComplete="off">
-        <label className="flex text-sm md:text-base items-center relative">
+        <label className="flex text-sm md:text-base items-center relative" ref={nameLabel}>
           nome =
           <div
             className={`absolute z-0 top-0 right-0 h-full overflow-hidden text-transparent font-area mt-[1px] mb-[1px] ml-[2px] mr-[2px] text-sm md:text-base`}
@@ -140,7 +166,6 @@ const Contacts = () => {
               validateTextLength(nameTextArea.current.value, 0)
                 ? setNameValidationWarn('')
                 : setNameValidationWarn('Preencha esse campo.')
-              console.log(nameValidationWarn)
             }}
             className={`flex-1 relative z-1 caret-transparent bg-transparent text-white  text-sm md:text-base font-area b-0 focus:outline-none ${
               nameValidationWarn?.length > 0 ? 'border-[#b24b4b4a] b-2 border-double' : 'border-none'
@@ -151,9 +176,7 @@ const Contacts = () => {
                 nameLabel.current?.getBoundingClientRect().width - nameTextArea.current?.getBoundingClientRect().width
               }px`
             }}
-            className={`absolute ml-10 top-3 md:top-4 text-xs flex border-md ${
-              nameValidationWarn?.length > 0 ? 'p-1' : ''
-            }`}>
+            className={`absolute top-3 md:top-4 text-xs flex border-md ${nameValidationWarn?.length > 0 ? 'p-1' : ''}`}>
             {nameValidationWarn}
           </p>
         </label>
@@ -201,9 +224,9 @@ const Contacts = () => {
             onFocus={() => setMessageValidationWarn('')}
             onBlur={() => {
               removeCaretVisibility(messageMirror)
-              validateTextLength(messageTextArea.current.value, 10)
+              validateTextLength(messageTextArea.current.value, 0)
                 ? setMessageValidationWarn('')
-                : setMessageValidationWarn('Este campo deve possuir mais que 10 caracteres')
+                : setMessageValidationWarn('Preencha esse campo')
             }}
             className={`flex-1 relative z-1 caret-transparent bg-transparent text-white  text-sm md:text-base font-area b-0 focus:outline-none ${
               messageValidationWarn?.length > 0 ? 'border-[#b24b4b4a] b-2 border-double' : 'border-none'
@@ -219,10 +242,31 @@ const Contacts = () => {
             {messageValidationWarn}
           </p>
         </label>
-        <p className="text-base text-center mt-0 md:mt-1 text-[#16a34a] font-bold italic w-3/4">{submitText}</p>
-        <Button type="submit" variant="contained" color="primary" className="md:w-1/2 md:self-center">
-          Enviar
-        </Button>
+        <div className="flex flex-col gap-1 mt-4">
+          <p
+            style={{ width: '100%' }}
+            className="text-base text-center mt-0 mb-0 md:mt-1 text-[#16a34a] font-bold italic w-3/4">
+            {submitText}
+          </p>
+          <Button
+            disabled={existError}
+            type="submit"
+            variant="contained"
+            color="primary"
+            className="md:w-1/2 md:self-center mt-0 disabled:bg-[#1976d2] disabled:opacity-50 disabled:text-white">
+            {loadingSubmit ? (
+              <ClipLoader
+                size={20}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+                className="self-center"
+                color="#ffffff"
+              />
+            ) : (
+              'Enviar'
+            )}
+          </Button>
+        </div>
       </Box>
     </Box>
   )
