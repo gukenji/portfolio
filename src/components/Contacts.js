@@ -9,21 +9,28 @@ const Contacts = () => {
   const emailMirror = useRef()
   const messageMirror = useRef()
   const nameMirror = useRef()
-  const [nameState, setNameState] = useState(true)
-  const [emailState, setEmailState] = useState(false)
-  const [messageState, setMessageState] = useState(false)
+  const submitResult = useRef()
   const w = window.innerWidth
   const system = window.navigator.userAgentData.platform
 
   const nameTextArea = useRef()
   const emailTextArea = useRef()
   const messageTextArea = useRef()
+  const nameLabel = useRef()
+  const emailLabel = useRef()
+  const messageLabel = useRef()
+
+  const [submitText, setSubmitText] = useState(null)
+  const [nameValidationWarn, setNameValidationWarn] = useState(null)
+  const [emailValidationWarn, setEmailValidationWarn] = useState(null)
+  const [messageValidationWarn, setMessageValidationWarn] = useState(null)
 
   const sendEmail = (e) => {
     e.preventDefault()
     emailjs.sendForm('service_ozj7ubn', 'template_ye4n9jk', form.current, 'jLdOxN9R4ESMRHdhC').then(
       (result) => {
         console.log(result.text)
+        setSubmitText('E-mail enviado com sucesso!')
       },
       (error) => {
         console.log(error.text)
@@ -47,14 +54,25 @@ const Contacts = () => {
     }
     var textBeforeCursor = new_text.substring(0, cursorPos)
     var textAfterCursor = new_text.substring(cursorPos)
-    console.log(`text before: ${textBeforeCursor}`)
-    console.log(`text after: ${textAfterCursor}`)
-    console.log(`cursor pos: ${cursorPos}`)
+
     area.current.previousSibling.innerHTML = `<span style="word-break:break-all;">${textBeforeCursor}<span style="width: 10px;  position:absolute;animation: blink 1s infinite;">&nbsp;</span>${textAfterCursor}</span>`
   }
 
   const removeCaretVisibility = (mirror) => {
     if (mirror.current.children[0]) mirror.current.removeChild(mirror.current.children[0])
+  }
+
+  const validateTextLength = (text, length) => {
+    var new_text = text.trimStart()
+    return new_text.length > length
+  }
+
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
   }
 
   const handleKey = (e) => {
@@ -103,7 +121,7 @@ const Contacts = () => {
         component="form"
         onSubmit={sendEmail}
         ref={form}
-        className={`bg-[#2e3436] text-sm md:text-base flex text-white flex-col m-7 gap-2 rounded-bl-lg rounded-br-lg p-4 mt-0`}
+        className={`bg-[#2e3436] text-sm md:text-base flex text-white flex-col m-7 gap-6 rounded-bl-lg rounded-br-lg p-4 mt-0`}
         noValidate
         autoComplete="off">
         <label className="flex text-sm md:text-base items-center relative">
@@ -116,10 +134,30 @@ const Contacts = () => {
             name={'user_name'}
             ref={nameTextArea}
             onKeyDown={handleKey}
-            onBlur={() => removeCaretVisibility(nameMirror)}
-            className="flex-1 relative z-1 caret-transparent bg-transparent border-none text-white  text-sm md:text-base font-area b-0 focus:outline-none"></input>
+            onFocus={() => setNameValidationWarn('')}
+            onBlur={() => {
+              removeCaretVisibility(nameMirror)
+              validateTextLength(nameTextArea.current.value, 0)
+                ? setNameValidationWarn('')
+                : setNameValidationWarn('Preencha esse campo.')
+              console.log(nameValidationWarn)
+            }}
+            className={`flex-1 relative z-1 caret-transparent bg-transparent text-white  text-sm md:text-base font-area b-0 focus:outline-none ${
+              nameValidationWarn?.length > 0 ? 'border-[#b24b4b4a] b-2 border-double' : 'border-none'
+            }`}></input>
+          <p
+            style={{
+              margin: `${nameTextArea.current?.getBoundingClientRect().height / 2}px 0 0 ${
+                nameLabel.current?.getBoundingClientRect().width - nameTextArea.current?.getBoundingClientRect().width
+              }px`
+            }}
+            className={`absolute ml-10 top-3 md:top-4 text-xs flex border-md ${
+              nameValidationWarn?.length > 0 ? 'p-1' : ''
+            }`}>
+            {nameValidationWarn}
+          </p>
         </label>
-        <label className="flex items-center relative text-sm md:text-base">
+        <label className="flex items-center relative text-sm md:text-base" ref={emailLabel}>
           email =
           <div
             className={`absolute z-0 top-0 right-0 h-full overflow-hidden text-transparent font-area mt-[1px] mb-[1px] ml-[2px] mr-[2px] text-sm md:text-base`}
@@ -128,22 +166,60 @@ const Contacts = () => {
             name={'user_email'}
             ref={emailTextArea}
             onKeyDown={handleKey}
-            onBlur={() => removeCaretVisibility(emailMirror)}
-            className="flex-1 relative z-1 caret-transparent bg-transparent border-none text-white  text-sm md:text-base font-area b-0 focus:outline-none"></input>
+            onFocus={() => setEmailValidationWarn('')}
+            onBlur={() => {
+              removeCaretVisibility(emailMirror)
+              validateEmail(emailTextArea.current.value) == null
+                ? setEmailValidationWarn('Digite um email valido.')
+                : setEmailValidationWarn('')
+            }}
+            className={`flex-1 relative z-1 caret-transparent bg-transparent text-white  text-sm md:text-base font-area b-0 focus:outline-none ${
+              emailValidationWarn?.length > 0 ? 'border-[#b24b4b4a] b-2 border-double' : 'border-none'
+            }`}></input>
+          <p
+            style={{
+              margin: `${emailTextArea.current?.getBoundingClientRect().height / 2}px 0 0 ${
+                emailLabel.current?.getBoundingClientRect().width - emailTextArea.current?.getBoundingClientRect().width
+              }px`
+            }}
+            className={`absolute top-3 md:top-4 text-xs flex border-md ${
+              emailValidationWarn?.length > 0 ? 'p-1' : ''
+            }`}>
+            {emailValidationWarn}
+          </p>
         </label>
-        <label className="flex items-center relative text-sm md:text-base">
+        <label className="flex items-center relative text-sm md:text-base" ref={messageLabel}>
           <span className="self-start mt-[2px]">mensagem =</span>
           <div
-            className={`absolute z-0 top-0 right-0 h-full overflow-hidden text-transparent font-area mt-[1px] mb-[1px] ml-[2px] mr-[2px] text-sm md:text-base`}
+            className={`absolute z-0 top-0 right-0 h-full overflow-hidden text-transparent font-area mt-[1px] mb-[1px] ml-[3px] mr-[2px] text-sm md:text-base`}
             ref={messageMirror}></div>
           <textarea
             name={'message'}
             ref={messageTextArea}
             rows={3}
             onKeyDown={handleKey}
-            // onBlur={() => removeCaretVisibility(messageMirror)}
-            className="flex-1 relative z-1 caret-transparent bg-transparent border-none text-white  text-sm md:text-base font-area b-0 focus:outline-none"></textarea>
+            onFocus={() => setMessageValidationWarn('')}
+            onBlur={() => {
+              removeCaretVisibility(messageMirror)
+              validateTextLength(messageTextArea.current.value, 10)
+                ? setMessageValidationWarn('')
+                : setMessageValidationWarn('Este campo deve possuir mais que 10 caracteres')
+            }}
+            className={`flex-1 relative z-1 caret-transparent bg-transparent text-white  text-sm md:text-base font-area b-0 focus:outline-none ${
+              messageValidationWarn?.length > 0 ? 'border-[#b24b4b4a] b-2 border-double' : 'border-none'
+            }`}></textarea>
+          <p
+            style={{
+              margin: `${messageTextArea.current?.getBoundingClientRect().height}px 0 0 ${
+                messageLabel.current?.getBoundingClientRect().width -
+                messageTextArea.current?.getBoundingClientRect().width
+              }px`
+            }}
+            className={`absolute top-0 text-xs flex border-md ${messageValidationWarn?.length > 0 ? 'p-2' : ''}`}>
+            {messageValidationWarn}
+          </p>
         </label>
+        <p className="text-base text-center mt-0 md:mt-1 text-[#16a34a] font-bold italic w-3/4">{submitText}</p>
         <Button type="submit" variant="contained" color="primary" className="md:w-1/2 md:self-center">
           Enviar
         </Button>
