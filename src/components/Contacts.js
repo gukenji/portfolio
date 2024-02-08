@@ -39,6 +39,7 @@ const Contacts = () => {
         setSubmitText('E-mail enviado com sucesso!')
         clearInputs()
         setLoadingSubmit(false)
+        setExistError(true)
       },
       (error) => {
         console.log(error.text)
@@ -130,6 +131,7 @@ const Contacts = () => {
         handleSelectionChange(emailTextArea, null)
       }
       checkIfErrors()
+      if (submitText != '') setSubmitText('')
     })
   }, [])
 
