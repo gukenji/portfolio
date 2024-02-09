@@ -19,6 +19,7 @@
   --pad_canvas: max(25px, 4.1vmin);
   --pad_form: max(100px, 4.4vmin);
   --pad_form_md: max(1000px, 5vmin);
+  --projects: calc(var(--pad) * 2 +96px) calc(var(--pad) * 2);
 }
 body {
   margin: 0;

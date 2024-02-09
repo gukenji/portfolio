@@ -7,6 +7,7 @@ import { current } from '@reduxjs/toolkit'
 const Header = () => {
   const currentPage = useSelector((state) => state.page.value)
   const dispatch = useDispatch()
+
   return (
     <div className="fixed z-10 top-pad bottom-pad left-pad right-pad text-white p-10 ">
       <div className="">
@@ -33,7 +34,9 @@ const Header = () => {
           </li>
           <li
             className="cursor-pointer hover:text-[#bfbfbf] md:text-base"
-            onClick={() => dispatch(changePage('contatos'))}>
+            onClick={() => {
+              dispatch(changePage('contatos'))
+            }}>
             {currentPage !== 'contatos' ? (
               'Contatos'
             ) : (

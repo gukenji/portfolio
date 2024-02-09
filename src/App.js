@@ -18,11 +18,26 @@ function App() {
   const currentPage = useSelector((state) => state.page.value)
   const canvas = useRef()
   const galaxy = useRef()
-  useEffect(() => {})
+  const topHelper = useRef()
+  const bottomHelper = useRef()
+  const leftHelper = useRef()
+  const rightHelper = useRef()
+
+  const frame = useRef()
+  useEffect(() => {
+    topHelper.current.style.height = (window.innerHeight - frame.current?.getBoundingClientRect().height) / 2 + 'px'
+    bottomHelper.current.style.height = (window.innerHeight - frame.current?.getBoundingClientRect().height) / 2 + 'px'
+    leftHelper.current.style.width = (window.innerWidth - frame.current?.getBoundingClientRect().width) / 2 + 'px'
+    rightHelper.current.style.width = (window.innerWidth - frame.current?.getBoundingClientRect().width) / 2 + 'px'
+  }, [])
   return (
     <div className="fixed left-0 top-0 w-full h-full bg-background-color overflow-hidden">
+      <div ref={topHelper} className="absolute z-10 w-full top-0 opacity-50 bg-black" />
+      <div ref={bottomHelper} className="absolute z-10 w-full bottom-0 opacity-50 bg-black" />
+      <div ref={leftHelper} className="absolute z-10 h-full left-0 opacity-50 bg-black" />
+      <div ref={rightHelper} className="absolute z-10 h-full right-0 opacity-50 bg-black" />
       <Header />
-      <Frame />
+      <Frame ref={frame} />
       <Canvas
         camera={{ position: [10, 6, 4] }}
         onCreated={({ gl }) => {
