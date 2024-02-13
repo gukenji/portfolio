@@ -4,7 +4,6 @@ import { useEffect, useRef, Suspense } from 'react'
 import { useSelector } from 'react-redux'
 import Galaxy from './components/Galaxy'
 import Header from './components/Header'
-import { current } from '@reduxjs/toolkit'
 import Home from './components/Home'
 import Projects from './components/Projects'
 import Contacts from './components/Contacts'
@@ -56,9 +55,9 @@ function App() {
           <Galaxy ref={galaxy} position={[0, 0, 0]} />
         </Suspense>
       </Canvas>
-      {currentPage == 'home' || currentPage == null ? <Home /> : <></>}
-      {currentPage == 'projetos' ? <Projects /> : <></>}
-      {currentPage == 'contatos' ? <Contacts /> : <></>}
+      {currentPage === 'home' || currentPage == null ? <Home /> : <></>}
+      {currentPage === 'projetos' ? <Projects /> : <></>}
+      {currentPage === 'contatos' ? <Contacts /> : <></>}
       <Footer />
     </div>
   )
