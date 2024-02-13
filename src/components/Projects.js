@@ -7,14 +7,13 @@ const Projects = () => {
 
   useEffect(() => {
     const onScroll = (e) => {
-      console.log(e)
       setOffset(offset + e.deltaY * 0.1)
       if (offset < -700) setOffset(-700)
       if (offset > 0) setOffset(0)
     }
 
     window.addEventListener('wheel', onScroll, { passive: true })
-    projects.current.style.transform = translating
+    if (offset <= 0 && offset >= -700) projects.current.style.transform = translating
 
     return () => window.removeEventListener('wheel', onScroll)
   }, [offset, translating])
