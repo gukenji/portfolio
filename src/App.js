@@ -32,10 +32,10 @@ function App() {
   }, [])
   return (
     <div className="fixed left-0 top-0 w-full h-full bg-background-color overflow-hidden">
-      <div ref={topHelper} className="absolute z-10 w-full top-0 opacity-50 bg-black" />
-      <div ref={bottomHelper} className="absolute z-10 w-full bottom-0 opacity-50 bg-black" />
-      <div ref={leftHelper} className="absolute z-10 h-full left-0 opacity-50 bg-black" />
-      <div ref={rightHelper} className="absolute z-10 h-full right-0 opacity-50 bg-black" />
+      <div ref={topHelper} className="absolute z-10 w-full top-0 opacity-70 bg-black" />
+      <div ref={bottomHelper} className="absolute z-10 w-full bottom-0 opacity-70 bg-black" />
+      <div ref={leftHelper} className="absolute z-10 h-full left-0 opacity-70 bg-black" />
+      <div ref={rightHelper} className="absolute z-10 h-full right-0 opacity-70 bg-black" />
       <Header />
       <Frame ref={frame} />
       <Canvas
