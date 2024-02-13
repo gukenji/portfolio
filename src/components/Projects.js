@@ -7,7 +7,7 @@ const Projects = () => {
 
   useEffect(() => {
     const onScroll = (e) => {
-      setOffset(offset + e.deltaY * 0.1)
+      setOffset(offset - e.deltaY * 0.1)
       if (offset < -700) setOffset(-700)
       if (offset > 0) setOffset(0)
     }
