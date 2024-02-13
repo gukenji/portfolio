@@ -12,6 +12,8 @@ import '@fontsource/roboto/300.css'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
+import { SpeedInsights } from '@vercel/speed-insights/next'
+import { Analytics } from '@vercel/analytics/react'
 
 function App() {
   const currentPage = useSelector((state) => state.page.value)
@@ -31,6 +33,8 @@ function App() {
   }, [])
   return (
     <div className="fixed left-0 top-0 w-full h-full bg-background-color overflow-hidden">
+      <SpeedInsights />
+      <Analytics />
       <div ref={topHelper} className="absolute z-10 w-full top-0 opacity-70 bg-black" />
       <div ref={bottomHelper} className="absolute z-10 w-full bottom-0 opacity-70 bg-black" />
       <div ref={leftHelper} className="absolute z-10 h-full left-0 opacity-70 bg-black" />

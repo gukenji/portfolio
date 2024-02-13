@@ -8,7 +8,7 @@ const ProjectWLabel = ({ project }) => {
   const { cover, title, description, icons } = project
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ minWidth: 300, maxWidth: 500 }}>
       <CardActionArea>
         <CardMedia component="img" image={cover} />
         <CardContent>
