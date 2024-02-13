@@ -1,5 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react'
-
+import ProjectWLabel from './ProjectWLabel'
+import mui from '../assets/mui.svg'
+import react from '../assets/react.svg'
+import redux from '../assets/redux.svg'
+import tailwind from '../assets/tailwind.svg'
+import threejs from '../assets/threejs.svg'
+import portfolio_cover from '../assets/portfolio-cover.png'
 const Projects = () => {
   const projects = useRef()
   const [offset, setOffset] = useState(0)
@@ -13,15 +19,25 @@ const Projects = () => {
     }
 
     window.addEventListener('wheel', onScroll, { passive: true })
-    if (offset <= 0 && offset >= -700) projects.current.style.transform = translating
+    window.addEventListener('scroll', onScroll, { passive: true })
 
+    if (offset <= 0 && offset >= -700) projects.current.style.transform = translating
+    window.removeEventListener('scroll', onScroll)
     return () => window.removeEventListener('wheel', onScroll)
   }, [offset, translating])
 
   return (
     <div ref={projects} className="block m-0 p-0 w-full min-h-[calc(1vh*100)] absolute">
-      <div className="text-white py-[calc(max(20px,4vmin)*2+130px)] px-[calc(max(20px,4vmin)*2)] text-right">
-        <div>
+      <div className="text-white py-[calc(max(20px,4vmin)*2+260px)] px-[calc(max(20px,4vmin)*2)] text-right">
+        <div className="flex flex-col items-end">
+          <ProjectWLabel
+            project={{
+              title: 'Portfólio',
+              description: 'Site pessoal com o propósito de expor meus outros projetos.',
+              icons: [mui, react, redux, , tailwind, , threejs],
+              cover: portfolio_cover
+            }}
+          />
           <p>A</p>
           <p>B</p>
           <p>C</p>
