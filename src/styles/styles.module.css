@@ -1,0 +1,25 @@
+.main {
+  height: 400px;
+  width: 100%;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  padding: 50px 100px;
+}
+
+.marker {
+  color: white;
+  position: absolute;
+  top: 0px;
+  left: 110px;
+  font-family: monospace;
+}
+
+.image {
+  width: 90%;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+}

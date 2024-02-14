@@ -158,7 +158,7 @@ const Contacts = () => {
             className={`absolute z-0 top-0 right-0 h-full overflow-hidden text-transparent font-area mt-[1px] mb-[1px] ml-[2px] mr-[2px] text-sm md:text-base`}
             ref={nameMirror}></div>
           <input
-            autoFocus
+            autoFocus={!isMobile}
             name={'user_name'}
             ref={nameTextArea}
             onKeyDown={handleKey}

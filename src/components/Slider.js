@@ -4,7 +4,7 @@ import { useSprings, a } from '@react-spring/web'
 
 const styles = {
   container: { position: 'relative', height: '100%', width: '100%', touchAction: 'none' },
-  item: { position: 'absolute', height: '100%', willChange: 'transform' }
+  item: { position: 'absolute', height: '50%', willChange: 'transform' }
 }
 
 /**
@@ -15,7 +15,7 @@ const styles = {
  * @param {number} width - fixed item with
  * @param {number} visible - number of items that muste be visible on screen
  */
-export function SliderX({ items, width = 600, visible = 4, style, children }) {
+export function Slider({ items, width = 600, visible = 5, style, children }) {
   const idx = useCallback((x, l = items.length) => (x < 0 ? x + l : x) % l, [items])
   const getPos = useCallback((i, firstVis, firstVisIdx) => idx(i - firstVis + firstVisIdx), [idx])
   const [springs, api] = useSprings(items.length, (i) => ({ x: (i < items.length - 1 ? i : -1) * width }))

@@ -9,12 +9,12 @@ const Header = () => {
   const dispatch = useDispatch()
 
   return (
-    <div className="fixed z-10 top-pad bottom-pad left-pad right-pad text-white p-10 ">
-      <div className="">
+    <div className="fixed z-10 top-pad bottom-pad left-pad right-pad text-white p-10 bg-transparent h-0">
+      <div>
         <h1 className="font-h1 text-2xl md:text-5xl mb-1">Gustavo Takahashi</h1>
         <p className="font-h1 md:text-lg mt-2">Desenvolvedor & Engenheiro</p>
       </div>
-      <div className="flex">
+      <div className="flex w-0">
         <ul className="pt-12 pl-0 list-none flex flex-col gap-2 font-area text-xs md:text-base">
           <li className="cursor-pointer hover:text-[#bfbfbf]" onClick={() => dispatch(changePage('home'))}>
             {(currentPage !== 'home') & (currentPage !== null) ? (
