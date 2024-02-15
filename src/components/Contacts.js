@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import { isMobile } from 'react-device-detect'
 import ClipLoader from 'react-spinners/ClipLoader'
+import tick from '../assets/tick.svg'
 
 const Contacts = () => {
   const form = useRef()
@@ -40,7 +41,12 @@ const Contacts = () => {
       .then(
         (result) => {
           console.log(result.text)
-          setSubmitText('E-mail enviado com sucesso!')
+          setSubmitText(
+            <span className="flex gap-1 justify-center content-center justify-items-center	items-center">
+              <img src={tick} className="w-[20px] md:w-[20px] cursor-pointer rounded-lg" />
+              <span className="text-sm md:text-base">E-mail enviado com sucesso!</span>
+            </span>
+          )
           clearInputs()
           setLoadingSubmit(false)
           setExistError(true)
@@ -256,7 +262,7 @@ const Contacts = () => {
         <div className="flex flex-col gap-1 mt-4">
           <p
             style={{ width: '100%' }}
-            className="text-base text-center mt-0 mb-0 md:mt-1 text-[#16a34a] font-bold italic w-3/4">
+            className=" uppercase text-base text-center mt-0 mb-0 md:mt-1 text-[#16a34a] font-bold  w-3/4 font-mono">
             {submitText}
           </p>
           <Button
