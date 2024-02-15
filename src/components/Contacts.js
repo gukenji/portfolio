@@ -12,7 +12,6 @@ const Contacts = () => {
   const messageMirror = useRef()
   const nameMirror = useRef()
   const submitResult = useRef()
-
   const w = window.innerWidth
   const system = window.navigator.userAgentData.platform
 
@@ -22,7 +21,6 @@ const Contacts = () => {
   const nameLabel = useRef()
   const emailLabel = useRef()
   const messageLabel = useRef()
-
   const [submitText, setSubmitText] = useState(null)
   const [nameValidationWarn, setNameValidationWarn] = useState(null)
   const [emailValidationWarn, setEmailValidationWarn] = useState(null)
@@ -32,20 +30,26 @@ const Contacts = () => {
   const sendEmail = (e) => {
     e.preventDefault()
     setLoadingSubmit(true)
-    console.log(loadingSubmit)
-    emailjs.sendForm('service_ozj7ubn', 'template_ye4n9jk', form.current, 'jLdOxN9R4ESMRHdhC').then(
-      (result) => {
-        console.log(result.text)
-        setSubmitText('E-mail enviado com sucesso!')
-        clearInputs()
-        setLoadingSubmit(false)
-        setExistError(true)
-      },
-      (error) => {
-        console.log(error.text)
-        setLoadingSubmit(false)
-      }
-    )
+    emailjs
+      .sendForm(
+        process.env.REACT_APP_SERVICE_ID,
+        process.env.REACT_APP_TEMPLATE_ID,
+        form.current,
+        process.env.REACT_APP_PUBLIC_KEY
+      )
+      .then(
+        (result) => {
+          console.log(result.text)
+          setSubmitText('E-mail enviado com sucesso!')
+          clearInputs()
+          setLoadingSubmit(false)
+          setExistError(true)
+        },
+        (error) => {
+          console.log(error.text)
+          setLoadingSubmit(false)
+        }
+      )
   }
 
   const handleSelectionChange = (area, key) => {
