@@ -8,7 +8,8 @@ module.exports = {
   theme: {
     fontFamily: {
       h1: ['Cormorant Garamond'],
-      area: ['Quicksand']
+      area: ['Quicksand'],
+      mono: ['monospace']
     },
     extend: {
       colors: {

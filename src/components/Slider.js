@@ -47,7 +47,9 @@ export function Slider({ items, width = 600, visible = 5, style, children }) {
 
   useGesture(
     {
-      onDrag: ({ event, offset: [x], direction: [dx] }) => {
+      onDrag: ({ event, offset: [x], direction: [dx], dragging }) => {
+        console.log(dragging)
+        console.log(event)
         event.preventDefault()
         if (dx) {
           dragOffset.current = -x

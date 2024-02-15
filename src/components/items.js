@@ -1,37 +1,71 @@
 import portfolio_cover from '../assets/portfolio-cover.gif'
 import loading from '../assets/loading.gif'
-
 import mui from '../assets/mui.svg'
 import react from '../assets/react.svg'
 import redux from '../assets/redux.svg'
 import tailwind from '../assets/tailwind.svg'
 import threejs from '../assets/threejs.svg'
+import python from '../assets/python.svg'
+import django from '../assets/django.svg'
+import raspberry from '../assets/raspberry.svg'
+import postgresql from '../assets/postgresql.svg'
+
 export const items = [
   //imagens 302x600
   {
+    title: '_porfólio pessoal ',
     css: `url(${portfolio_cover})`,
-    content: 'Portfólio pessoal com o propósito de expor meus outros projetos.',
-    icons: [mui, react, redux, tailwind, threejs]
+    content: <>Portfólio pessoal com o propósito de expor meus outros projetos.</>,
+    icons: [{ mui: mui }, { react: react }, { redux: redux }, { tailwind: tailwind }, { 'three.js': threejs }]
   },
   {
+    title: '_coma bem',
+    css: `url(${loading})`,
+    content: (
+      <>
+        Projeto gratuito e open source que visa facilitar o controle do consumo dos macronutrientes no dia-a-dia. <br />
+        O app será integrado a uma balança e um Raspberry Pi para facilitar o input dos alimentos.
+      </>
+    ),
+    icons: [
+      { react: react },
+      { redux: redux },
+      { python: python },
+      { django: django },
+      { 'raspberry pi': raspberry },
+      { postgresql: postgresql }
+    ]
+  },
+  {
+    title: '_',
     css: `url(${loading})`
   },
   {
+    title: '_',
     css: `url(${loading})`
   },
   {
+    title: '_',
     css: `url(${loading})`
   },
   {
+    title: '_',
     css: `url(${loading})`
   },
   {
+    title: '_',
     css: `url(${loading})`
   },
   {
+    title: '_',
     css: `url(${loading})`
   },
   {
+    title: '_',
+    css: `url(${loading})`
+  },
+  {
+    title: '_',
     css: `url(${loading})`
   }
 ]
