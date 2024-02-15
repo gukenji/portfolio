@@ -149,101 +149,106 @@ const Contacts = () => {
         component="form"
         onSubmit={sendEmail}
         ref={form}
-        className={`bg-[#2e3436] text-sm md:text-base flex text-white flex-col m-7 gap-6 rounded-bl-lg rounded-br-lg p-4 mt-0`}
+        className={`bg-[#2e3436] text-sm md:text-base flex text-white flex-col gap-2 m-7 rounded-bl-lg rounded-br-lg p-4 mt-0`}
         noValidate
         autoComplete="off">
-        <label className="flex text-sm md:text-base items-center relative" ref={nameLabel}>
-          nome =
-          <div
-            className={`absolute z-0 top-0 right-0 h-full overflow-hidden text-transparent font-area mt-[1px] mb-[1px] ml-[2px] mr-[2px] text-sm md:text-base`}
-            ref={nameMirror}></div>
-          <input
-            autoFocus={!isMobile}
-            name={'user_name'}
-            ref={nameTextArea}
-            onKeyDown={handleKey}
-            onFocus={() => setNameValidationWarn('')}
-            onBlur={() => {
-              removeCaretVisibility(nameMirror)
-              validateTextLength(nameTextArea.current.value, 0)
-                ? setNameValidationWarn('')
-                : setNameValidationWarn('Preencha esse campo.')
-            }}
-            className={`flex-1 relative z-1 caret-transparent bg-transparent text-white  text-sm md:text-base font-area b-0 focus:outline-none ${
-              nameValidationWarn?.length > 0 ? 'border-[#b24b4b4a] b-2 border-double' : 'border-none'
-            }`}></input>
-          <p
-            style={{
-              margin: `${nameTextArea.current?.getBoundingClientRect().height / 2}px 0 0 ${
-                nameLabel.current?.getBoundingClientRect().width - nameTextArea.current?.getBoundingClientRect().width
-              }px`
-            }}
-            className={`absolute top-3 md:top-4 text-xs flex border-md ${nameValidationWarn?.length > 0 ? 'p-1' : ''}`}>
-            {nameValidationWarn}
-          </p>
-        </label>
-        <label className="flex items-center relative text-sm md:text-base" ref={emailLabel}>
-          email =
-          <div
-            className={`absolute z-0 top-0 right-0 h-full overflow-hidden text-transparent font-area mt-[1px] mb-[1px] ml-[2px] mr-[2px] text-sm md:text-base`}
-            ref={emailMirror}></div>
-          <input
-            name={'user_email'}
-            ref={emailTextArea}
-            onKeyDown={handleKey}
-            onFocus={() => setEmailValidationWarn('')}
-            onBlur={() => {
-              removeCaretVisibility(emailMirror)
-              validateEmail(emailTextArea.current.value) == null
-                ? setEmailValidationWarn('Digite um email valido.')
-                : setEmailValidationWarn('')
-            }}
-            className={`flex-1 relative z-1 caret-transparent bg-transparent text-white  text-sm md:text-base font-area b-0 focus:outline-none ${
-              emailValidationWarn?.length > 0 ? 'border-[#b24b4b4a] b-2 border-double' : 'border-none'
-            }`}></input>
-          <p
-            style={{
-              margin: `${emailTextArea.current?.getBoundingClientRect().height / 2}px 0 0 ${
-                emailLabel.current?.getBoundingClientRect().width - emailTextArea.current?.getBoundingClientRect().width
-              }px`
-            }}
-            className={`absolute top-3 md:top-4 text-xs flex border-md ${
-              emailValidationWarn?.length > 0 ? 'p-1' : ''
-            }`}>
-            {emailValidationWarn}
-          </p>
-        </label>
-        <label className="flex items-center relative text-sm md:text-base" ref={messageLabel}>
-          <span className="self-start mt-[2px]">mensagem =</span>
-          <div
-            className={`absolute z-0 top-0 right-0 h-full overflow-hidden text-transparent font-area mt-[1px] mb-[1px] ml-[3px] mr-[2px] text-sm md:text-base`}
-            ref={messageMirror}></div>
-          <textarea
-            name={'message'}
-            ref={messageTextArea}
-            rows={3}
-            onKeyDown={handleKey}
-            onFocus={() => setMessageValidationWarn('')}
-            onBlur={() => {
-              removeCaretVisibility(messageMirror)
-              validateTextLength(messageTextArea.current.value, 0)
-                ? setMessageValidationWarn('')
-                : setMessageValidationWarn('Preencha esse campo')
-            }}
-            className={`flex-1 relative z-1 caret-transparent bg-transparent text-white  text-sm md:text-base font-area b-0 focus:outline-none ${
-              messageValidationWarn?.length > 0 ? 'border-[#b24b4b4a] b-2 border-double' : 'border-none'
-            }`}></textarea>
-          <p
-            style={{
-              margin: `${messageTextArea.current?.getBoundingClientRect().height}px 0 0 ${
-                messageLabel.current?.getBoundingClientRect().width -
-                messageTextArea.current?.getBoundingClientRect().width
-              }px`
-            }}
-            className={`absolute top-0 text-xs flex border-md ${messageValidationWarn?.length > 0 ? 'p-2' : ''}`}>
-            {messageValidationWarn}
-          </p>
-        </label>
+        <div className="flex gap-6 flex-col">
+          <label className="flex text-sm md:text-base items-center relative" ref={nameLabel}>
+            nome =
+            <div
+              className={`absolute z-0 top-0 right-0 h-full overflow-hidden text-transparent font-area mt-[1px] mb-[1px] ml-[2px] mr-[2px] text-sm md:text-base`}
+              ref={nameMirror}></div>
+            <input
+              autoFocus={!isMobile}
+              name={'user_name'}
+              ref={nameTextArea}
+              onKeyDown={handleKey}
+              onFocus={() => setNameValidationWarn('')}
+              onBlur={() => {
+                removeCaretVisibility(nameMirror)
+                validateTextLength(nameTextArea.current.value, 0)
+                  ? setNameValidationWarn('')
+                  : setNameValidationWarn('Preencha esse campo.')
+              }}
+              className={`flex-1 relative z-1 caret-transparent bg-transparent text-white  text-sm md:text-base font-area b-0 focus:outline-none ${
+                nameValidationWarn?.length > 0 ? 'border-[#b24b4b4a] b-2 border-double' : 'border-none'
+              }`}></input>
+            <p
+              style={{
+                margin: `${nameTextArea.current?.getBoundingClientRect().height / 2}px 0 0 ${
+                  nameLabel.current?.getBoundingClientRect().width - nameTextArea.current?.getBoundingClientRect().width
+                }px`
+              }}
+              className={`absolute top-3 md:top-4 text-xs flex border-md ${
+                nameValidationWarn?.length > 0 ? 'p-1' : ''
+              }`}>
+              {nameValidationWarn}
+            </p>
+          </label>
+          <label className="flex items-center relative text-sm md:text-base" ref={emailLabel}>
+            email =
+            <div
+              className={`absolute z-0 top-0 right-0 h-full overflow-hidden text-transparent font-area mt-[1px] mb-[1px] ml-[2px] mr-[2px] text-sm md:text-base`}
+              ref={emailMirror}></div>
+            <input
+              name={'user_email'}
+              ref={emailTextArea}
+              onKeyDown={handleKey}
+              onFocus={() => setEmailValidationWarn('')}
+              onBlur={() => {
+                removeCaretVisibility(emailMirror)
+                validateEmail(emailTextArea.current.value) == null
+                  ? setEmailValidationWarn('Digite um email valido.')
+                  : setEmailValidationWarn('')
+              }}
+              className={`flex-1 relative z-1 caret-transparent bg-transparent text-white  text-sm md:text-base font-area b-0 focus:outline-none ${
+                emailValidationWarn?.length > 0 ? 'border-[#b24b4b4a] b-2 border-double' : 'border-none'
+              }`}></input>
+            <p
+              style={{
+                margin: `${emailTextArea.current?.getBoundingClientRect().height / 2}px 0 0 ${
+                  emailLabel.current?.getBoundingClientRect().width -
+                  emailTextArea.current?.getBoundingClientRect().width
+                }px`
+              }}
+              className={`absolute top-3 md:top-4 text-xs flex border-md ${
+                emailValidationWarn?.length > 0 ? 'p-1' : ''
+              }`}>
+              {emailValidationWarn}
+            </p>
+          </label>
+          <label className="flex items-center relative text-sm md:text-base" ref={messageLabel}>
+            <span className="self-start mt-[2px]">mensagem =</span>
+            <div
+              className={`absolute z-0 top-0 right-0 h-full overflow-hidden text-transparent font-area mt-[1px] mb-[1px] ml-[3px] mr-[2px] text-sm md:text-base`}
+              ref={messageMirror}></div>
+            <textarea
+              name={'message'}
+              ref={messageTextArea}
+              rows={3}
+              onKeyDown={handleKey}
+              onFocus={() => setMessageValidationWarn('')}
+              onBlur={() => {
+                removeCaretVisibility(messageMirror)
+                validateTextLength(messageTextArea.current.value, 0)
+                  ? setMessageValidationWarn('')
+                  : setMessageValidationWarn('Preencha esse campo')
+              }}
+              className={`flex-1 relative z-1 caret-transparent bg-transparent text-white  text-sm md:text-base font-area b-0 focus:outline-none ${
+                messageValidationWarn?.length > 0 ? 'border-[#b24b4b4a] b-2 border-double' : 'border-none'
+              }`}></textarea>
+            <p
+              style={{
+                margin: `${messageTextArea.current?.getBoundingClientRect().height}px 0 0 ${
+                  messageLabel.current?.getBoundingClientRect().width -
+                  messageTextArea.current?.getBoundingClientRect().width
+                }px`
+              }}
+              className={`absolute top-0 text-xs flex border-md ${messageValidationWarn?.length > 0 ? 'p-2' : ''}`}>
+              {messageValidationWarn}
+            </p>
+          </label>
+        </div>
         <div className="flex flex-col gap-1 mt-4">
           <p
             style={{ width: '100%' }}

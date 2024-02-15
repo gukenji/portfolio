@@ -16,7 +16,8 @@ export const items = [
     title: '_porfólio pessoal ',
     css: `url(${portfolio_cover})`,
     content: <>Portfólio pessoal com o propósito de expor meus outros projetos.</>,
-    icons: [{ mui: mui }, { react: react }, { redux: redux }, { tailwind: tailwind }, { 'three.js': threejs }]
+    icons: [{ mui: mui }, { react: react }, { redux: redux }, { tailwind: tailwind }, { 'three.js': threejs }],
+    git_link: 'https://github.com/gukenji/portfolio'
   },
   {
     title: '_coma bem',

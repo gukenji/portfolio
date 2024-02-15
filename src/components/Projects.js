@@ -3,6 +3,8 @@ import { a } from '@react-spring/web'
 import { Slider } from './Slider'
 import { items } from './items'
 import { isMobile } from 'react-device-detect'
+import { ReactComponent as Github } from '../assets/github_projects.svg'
+
 const Projects = () => {
   const handleMouseEnter = (e) => {
     e.preventDefault()
@@ -19,14 +21,21 @@ const Projects = () => {
 
   return (
     <div
-      className={`text-white py-[calc(max(20px,4vmin)*2+300px)] md:py-[calc(max(20px,4vmin)*2+320px)] px-[calc(max(20px,4vmin)*2)]`}>
+      className={`text-white py-[calc(max(20px,4vmin)*2+300px)] md:py-[calc(max(20px,4vmin)*2+320px)] px-[calc(max(20px,4vmin)*3.6)] md:px-[calc(max(20px,4vmin)*2)]`}>
       <div className={`relative z-8 w-full h-[400px]`}>
         <Slider items={items} width={isMobile ? 300 : 500}>
-          {({ css, content, icons, title }, i) => (
+          {({ css, content, icons, title, git_link }, i) => (
             <div className={`w-full h-full `}>
-              <div className={`text-white relative font-mono`}>
+              <div className={`text-white relative font-mono relative w-[80%]`}>
                 {String(i).padStart(2, '0')}
-                <p className="">{title}</p>
+                <p>{title}</p>
+                {git_link ? (
+                  <a href={git_link} target="_blank" className="absolute right-0 top-0">
+                    <Github className="w-[25px] md:w-[30px] cursor-pointer rounded-lg hover:scale-125" />
+                  </a>
+                ) : (
+                  <></>
+                )}
               </div>
               <a.div
                 className={`w-[80%] h-[60%] md:h-full bg-contain bg-no-repeat bg-center`}
