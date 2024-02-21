@@ -21,7 +21,7 @@ export const items = [
     git_link: 'https://github.com/gukenji/portfolio'
   },
   {
-    title: '_coma bem',
+    title: '_comer bem',
     css: `url(${loading})`,
     content: (
       <>
