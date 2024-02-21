@@ -9,6 +9,7 @@ import python from '../assets/python.svg'
 import django from '../assets/django.svg'
 import raspberry from '../assets/raspberry.svg'
 import postgresql from '../assets/postgresql.svg'
+import vite from '../assets/vite.svg'
 
 export const items = [
   //imagens 302x600
@@ -16,7 +17,7 @@ export const items = [
     title: '_porfólio pessoal ',
     css: `url(${portfolio_cover})`,
     content: <>Portfólio pessoal com o propósito de expor meus outros projetos.</>,
-    icons: [{ mui: mui }, { react: react }, { redux: redux }, { tailwind: tailwind }, { 'three.js': threejs }],
+    icons: [{ react: react }, { redux: redux }, { tailwind: tailwind }, { 'three.js': threejs }],
     git_link: 'https://github.com/gukenji/portfolio'
   },
   {
@@ -30,13 +31,16 @@ export const items = [
     ),
     icons: [
       { react: react },
+      { vite: vite },
       { redux: redux },
       { python: python },
       { django: django },
       { 'raspberry pi': raspberry },
       { postgresql: postgresql }
-    ]
+    ],
+    git_link: 'https://github.com/gukenji/comer-bem'
   },
+
   {
     title: '_',
     css: `url(${loading})`
