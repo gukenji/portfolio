@@ -10,6 +10,7 @@ import django from '../assets/django.svg'
 import raspberry from '../assets/raspberry.svg'
 import postgresql from '../assets/postgresql.svg'
 import vite from '../assets/vite.svg'
+import typescript from '../assets/typescript.svg'
 
 export const items = [
   //imagens 302x600
@@ -32,6 +33,7 @@ export const items = [
     icons: [
       { react: react },
       { vite: vite },
+      { typescript: typescript },
       { redux: redux },
       { python: python },
       { django: django },
