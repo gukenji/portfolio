@@ -28,12 +28,13 @@ export const items = [
     git_link: 'https://github.com/gukenji/portfolio'
   },
   {
-    title: '_comer bem',
+    title: '_fitwars',
     css: `url(${loading})`,
     content: (
       <>
-        Projeto gratuito e open source que visa facilitar o controle do consumo dos macronutrientes no dia-a-dia. <br />
-        O app será integrado a uma balança e um Raspberry Pi para facilitar o input dos alimentos.
+        Projeto com o intuito de facilitar o controle do consumo de macronutrientes no dia-a-dia, de uma maneira
+        interativa. <br />O app contará com elementos MMORPG (inspirado em Ultima Online e The Crims), fazendo com que
+        os usuários contribuam (através da criação de grupos) e/ou batalhem entre si.
       </>
     ),
     icons: [
@@ -43,7 +44,6 @@ export const items = [
       { redux: redux },
       { python: python },
       { django: django },
-      { 'raspberry pi': raspberry },
       { postgresql: postgresql }
     ],
     git_link: 'https://github.com/gukenji/comer-bem'
