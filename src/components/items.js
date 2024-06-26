@@ -44,9 +44,10 @@ export const items = [
       { redux: redux },
       { python: python },
       { django: django },
-      { postgresql: postgresql }
+      { postgresql: postgresql },
+      { mui: mui }
     ],
-    git_link: 'https://github.com/gukenji/comer-bem'
+    git_link: 'https://github.com/gukenji/fitwar'
   },
 
   {
