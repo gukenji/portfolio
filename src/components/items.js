@@ -28,7 +28,7 @@ export const items = [
     git_link: 'https://github.com/gukenji/portfolio'
   },
   {
-    title: '_fitwars',
+    title: '_fitwar',
     css: `url(${loading})`,
     content: (
       <>
