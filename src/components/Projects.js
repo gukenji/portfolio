@@ -43,7 +43,7 @@ const Projects = () => {
               />
               <div className="px-1 md:px-2">
                 <p className="relative mt-5 break-word text-xs md:text-sm w-[80%] text-justify ">{content}</p>
-                <div className="flex gap-1">
+                <div className="flex gap-2">
                   {icons?.map((icon) => (
                     <div>
                       <img

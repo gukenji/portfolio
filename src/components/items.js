@@ -11,6 +11,10 @@ import raspberry from '../assets/raspberry.svg'
 import postgresql from '../assets/postgresql.svg'
 import vite from '../assets/vite.svg'
 import typescript from '../assets/typescript.svg'
+import openai from '../assets/openai.svg'
+import fastapi from '../assets/FastAPI.svg'
+import docker from '../assets/docker.svg'
+import translator_cover from '../assets/translator-cover.gif'
 
 export const items = [
   //imagens 302x600
@@ -27,32 +31,44 @@ export const items = [
     icons: [{ react: react }, { redux: redux }, { tailwind: tailwind }, { 'three.js': threejs }],
     git_link: 'https://github.com/gukenji/portfolio'
   },
+  // {
+  //   title: '_fitwar',
+  //   css: `url(${loading})`,
+  //   content: (
+  //     <>
+  //       Projeto com o intuito de facilitar o controle do consumo de macronutrientes no dia-a-dia, de uma maneira
+  //       interativa. <br />O app contará com elementos MMORPG (inspirado em Ultima Online e The Crims), fazendo com que
+  //       os usuários contribuam (através da criação de grupos) e/ou batalhem entre si.
+  //     </>
+  //   ),
+  //   icons: [
+  //     { react: react },
+  //     { vite: vite },
+  //     { typescript: typescript },
+  //     { redux: redux },
+  //     { python: python },
+  //     { django: django },
+  //     { postgresql: postgresql },
+  //     { mui: mui }
+  //   ],
+  //   git_link: 'https://github.com/gukenji/fitwar'
+  // },
   {
-    title: '_fitwar',
-    css: `url(${loading})`,
+    title: '_translator',
+    css: `url(${translator_cover})`,
     content: (
       <>
-        Projeto com o intuito de facilitar o controle do consumo de macronutrientes no dia-a-dia, de uma maneira
-        interativa. <br />O app contará com elementos MMORPG (inspirado em Ultima Online e The Crims), fazendo com que
-        os usuários contribuam (através da criação de grupos) e/ou batalhem entre si.
+      Aplicativo  para geração e incorporação de legendas em vídeos através do Whisper AI, com suporte a múltiplos idiomas e formatos. Funciona em CPU ou GPU (CUDA) e pode ser acessado por qualquer dispositivo na mesma rede Wi-Fi.
       </>
     ),
     icons: [
       { react: react },
-      { vite: vite },
-      { typescript: typescript },
-      { redux: redux },
+      { whisper: openai },
       { python: python },
-      { django: django },
-      { postgresql: postgresql },
-      { mui: mui }
+      { fastapi: fastapi},
+      { docker: docker}
     ],
-    git_link: 'https://github.com/gukenji/fitwar'
-  },
-
-  {
-    title: '_',
-    css: `url(${loading})`
+    git_link: 'https://github.com/gukenji/translator'
   },
   {
     title: '_',
