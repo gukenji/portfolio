@@ -1,4 +1,4 @@
-import portfolio_cover from '../assets/portfolio-cover.gif'
+import portfolio_cover from '../assets/portfolio-cover.png'
 import loading from '../assets/loading.gif'
 import mui from '../assets/mui.svg'
 import react from '../assets/react.svg'
