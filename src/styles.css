@@ -15,7 +15,7 @@
 }
 :root {
   --background-color: hsl(0, 0%, 5%);
-  --pad: max(20px, 4vmin);
+  --pad: max(30px, 4vmin);
   --pad_canvas: max(25px, 4.1vmin);
   --pad_form: max(100px, 4.4vmin);
   --pad_form_md: max(1000px, 5vmin);

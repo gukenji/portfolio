@@ -32,7 +32,7 @@ const Header = () => {
               <span className="material-symbols-outlined text-xs md:text-base">arrow_forward_ios</span>
             )}
           </li>
-          <li
+          {/* <li
             className="cursor-pointer hover:text-[#bfbfbf] md:text-base"
             onClick={() => {
               dispatch(changePage('contatos'))
@@ -42,7 +42,7 @@ const Header = () => {
             ) : (
               <span className="material-symbols-outlined text-xs md:text-base">arrow_forward_ios</span>
             )}
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>

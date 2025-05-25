@@ -22,7 +22,7 @@ const Projects = () => {
   return (
     <div
       className={`text-white py-[calc(max(20px,4vmin)*2+260px)] md:py-[calc(max(20px,4vmin)*2+320px)] px-[calc(max(20px,4vmin)*3.6)] md:px-[calc(max(20px,4vmin)*2)]`}>
-      <div className={`relative z-8 w-full h-[400px]`}>
+      <div className={`relative z-8 w-full h-[400px] mt-10`}>
         <Slider items={items} width={isMobile ? 300 : 500}>
           {({ css, content, icons, title, git_link }, i) => (
             <div className={`w-full h-full `}>

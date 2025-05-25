@@ -68,6 +68,8 @@ const Contacts = () => {
       cursorPos = area.current?.selectionStart
     }
     const text = area.current?.value
+    if (!text) return
+
     var new_text = ''
     for (var i = 0; i < text.length; i++) {
       text[i] == ' ' ? (new_text += '\xa0') : (new_text += text[i])

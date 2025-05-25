@@ -11,8 +11,8 @@ const Footer = () => {
     footer.current.style.left = `${window.innerWidth / 2 - logo_width}px`
   })
   return (
-    <div className="fixed z-10 bottom-pad" ref={footer}>
-      <div className="flex gap-3 mb-2">
+    <div className="fixed z-10 md:mt-1 opacity-100" ref={footer}>
+      <div className="flex gap-3">
         <a href="https://www.linkedin.com/in/gustavo-takahashi-182bb745/" target="_blank">
           <Linkedin className="w-[30px] md:w-[40px] hover:scale-125 cursor-pointer rounded-lg" ref={logo} />
         </a>

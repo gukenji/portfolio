@@ -15,6 +15,8 @@ import openai from '../assets/openai.svg'
 import fastapi from '../assets/FastAPI.svg'
 import docker from '../assets/docker.svg'
 import translator_cover from '../assets/translator-cover.gif'
+import vue from '../assets/vue.svg'
+import microcontroller from '../assets/microcontroller.svg'
 
 export const items = [
   //imagens 302x600
@@ -58,21 +60,33 @@ export const items = [
     css: `url(${translator_cover})`,
     content: (
       <>
-      Aplicativo  para geração e incorporação de legendas em vídeos através do Whisper AI, com suporte a múltiplos idiomas e formatos. Funciona em CPU ou GPU (CUDA) e pode ser acessado por qualquer dispositivo na mesma rede Wi-Fi.
+        Aplicativo para geração e incorporação de legendas em vídeos através do Whisper AI, com suporte a múltiplos
+        idiomas e formatos. Funciona em CPU ou GPU (CUDA) e pode ser acessado por qualquer dispositivo na mesma rede
+        Wi-Fi.
       </>
     ),
-    icons: [
-      { react: react },
-      { whisper: openai },
-      { python: python },
-      { fastapi: fastapi},
-      { docker: docker}
-    ],
+    icons: [{ react: react }, { whisper: openai }, { python: python }, { fastapi: fastapi }, { docker: docker }],
     git_link: 'https://github.com/gukenji/translator'
   },
   {
-    title: '_',
-    css: `url(${loading})`
+    title: '_regador automático de plantas',
+    css: `url(${loading})`,
+    content: (
+      <>
+        Sistema de irrigação automática com ESP32, sensores de umidade e controle via Wi-Fi. Possui backend em FastAPI e
+        frontend em Vue, permitindo o monitoramento em tempo real da umidade do solo por qualquer dispositivo na mesma
+        rede local.
+      </>
+    ),
+    icons: [
+      { vue: vue },
+      { python: python },
+      { fastapi: fastapi },
+      { docker: docker },
+      { postgresql: postgresql },
+      { esp32: microcontroller }
+    ],
+    git_link: 'https://github.com/gukenji/humidity-reader'
   },
   {
     title: '_',
