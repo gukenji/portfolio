@@ -17,6 +17,7 @@ import docker from '../assets/docker.svg'
 import translator_cover from '../assets/translator-cover.gif'
 import vue from '../assets/vue.svg'
 import microcontroller from '../assets/microcontroller.svg'
+import humidity_sensor_cover from '../assets/humidity-sensor-cover.png'
 
 export const items = [
   //imagens 302x600
@@ -70,7 +71,7 @@ export const items = [
   },
   {
     title: '_regador automático de plantas',
-    css: `url(${loading})`,
+    css: `url(${humidity_sensor_cover})`,
     content: (
       <>
         Sistema de irrigação automática com ESP32, sensores de umidade e controle via Wi-Fi. Possui backend em FastAPI e
